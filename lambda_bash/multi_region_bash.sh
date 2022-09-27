@@ -12,7 +12,7 @@ export AWS_ACCESS_KEY_ID=$(echo $OUT | jq -r '.Credentials''.AccessKeyId');\
 export AWS_SECRET_ACCESS_KEY=$(echo $OUT | jq -r '.Credentials''.SecretAccessKey');\
 export AWS_SESSION_TOKEN=$(echo $OUT | jq -r '.Credentials''.SessionToken');
 
-# aws sts assume-role --role-arn  "arn:aws:iam::737405767796:role/assumeAdmin01" --role-session-name "aaa"  
+
 ConfigName=`aws ec2 --region us-east-1 describe-instance-status --filters Name=instance-status.status,Values=impaired --query "InstanceStatuses[*].{InstanceId: InstanceId}" --output text`
 
 aws ec2 describe-instances --region us-east-1 --instance-ids $ConfigName \
